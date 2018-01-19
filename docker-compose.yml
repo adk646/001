@@ -18,29 +18,8 @@ services:
     privileged: true
     restart: always
     environment:
-       - "TZ=Asia/Yekaterinburg" 
+       - "TZ=Asia/Tashkent"
       
-
-  loger.local:
-    build: build/loger_ubuntu/
-    container_name: loger.local
-    hostname: loger.local
-    volumes:
-      - ./configs/syslog-ng-server/:/usr/local/etc/
-      - ./configs/td-agent/:/etc/td-agent/
-    ports:
-      - "514:514"
-      - "514:514/udp" 
-      - "25300-25400:25300-25400"
-      - "25300-25400:25300-25400/udp"
-    networks:
-      - local-network
-    tty: true
-    privileged: true
-    restart: always
-    entrypoint: "/bin/bash /run.sh"
-    environment:
-       - "TZ=Asia/Yekaterinburg" 
 
   elasticsearch.local:
     build: build/elasticsearch/
